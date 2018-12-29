@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
-
+import  './../App.css';
 class Album extends Component {
   constructor(props){
     super(props);
@@ -15,14 +15,9 @@ class Album extends Component {
 }
 
 displayTime(time){
-  var minutes = Math.floor(time / 60);
-  var seconds = time % 60;
+    return time ? `${Math.floor(time / 60)}:${Number(time % 60 / 100).toFixed(2).substr(2,3)}` : '-:--'
 
-  if(seconds < 10){
-    seconds = "0" + seconds;
   }
-  return minutes + ":" + seconds
-}
 
 
    render() {
@@ -47,7 +42,7 @@ displayTime(time){
                   <tr key={index}>
                   <th>{ index + 1 }{" "}
                    { song.title }{" "}
-                    { displayTime(song.time) } </th>
+                    { this.displayTime(song.duration) } </th>
                   </tr>
                   )
             }
