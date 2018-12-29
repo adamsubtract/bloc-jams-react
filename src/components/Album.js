@@ -14,6 +14,17 @@ class Album extends Component {
   };
 }
 
+displayTime(time){
+  var minutes = Math.floor(time / 60);
+  var seconds = time % 60;
+
+  if(seconds < 10){
+    seconds = "0" + seconds;
+  }
+  return minutes + ":" + seconds
+}
+
+
    render() {
      return (
        <section className="album">
@@ -36,7 +47,7 @@ class Album extends Component {
                   <tr key={index}>
                   <th>{ index + 1 }{" "}
                    { song.title }{" "}
-                   { Math.floor(song.duration/60) }:{}</th>
+                    { displayTime(song.time) } </th>
                   </tr>
                   )
             }
