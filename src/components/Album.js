@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
-import  './../App.css';
+import './../App.css';
+
 class Album extends Component {
   constructor(props){
     super(props);
@@ -17,7 +18,7 @@ class Album extends Component {
 displayTime(time){
     return time ? `${Math.floor(time / 60)}:${Number(time % 60 / 100).toFixed(2).substr(2,3)}` : '-:--'
 
-  }
+}
 
 
    render() {
@@ -31,18 +32,18 @@ displayTime(time){
               <div id="release-info">{this.state.album.releaseInfo}</div>
             </div>
 
-          <table id="song-list">
-            <colgroup>
+          <table className="song-list">
+            <colgroup id="song-list">
               <col id="song-number-column" />
               <col id="song-title-column" />
               <col id="song-duration-column" />
             </colgroup>
-            <tbody id="song-info">
-            { this.state.album.songs.map((song, index) =>
+            <tbody className="song-info">
+            {  this.state.album.songs.map((song, index) =>
                   <tr key={index}>
-                  <th>{ index + 1 }{" "}
-                   { song.title }{" "}
-                    { this.displayTime(song.duration) } </th>
+                     <td>{ index + 1 }</td>
+                     <td className="song-name">{ song.title }</td>
+                     <td>{ this.displayTime(song.duration)}</td>
                   </tr>
                   )
             }

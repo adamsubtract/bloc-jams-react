@@ -34,3 +34,12 @@
 .song-info {
   text-align: center;
 }
+.song-list {
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.song-name{
+  text-align: left;
+}
