@@ -10,9 +10,26 @@ class Album extends Component {
   });
 
   this.state = {
-    album: album
+    album: album,
+    currentSong: album.songs[0],
+    isPlaying: false
+
   };
+
+  this.audioElement = document.createElement('audio');
+  this.audioElement.src = album.songs[0].audioSrc;
 }
+
+play(){
+  this.audioElement.play();
+  this.setState({ isPlaying: true });
+}
+
+pause() {
+  this.audioElement.pause();
+  this.setState({ isPlaying: false });
+}
+
 
 displayTime(time){
   var minutes = Math.floor(time / 60);
@@ -47,7 +64,7 @@ displayTime(time){
                   <tr key={index}>
                   <th>{ index + 1 }{" "}
                    { song.title }{" "}
-                    { displayTime(song.time) } </th>
+                    { this.displayTime(song.time) } </th>
                   </tr>
                   )
             }
