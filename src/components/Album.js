@@ -31,6 +31,21 @@ pause() {
   this.setState({ isPlaying: false });
 }
 
+setSong(song){
+  this.audioElement.src = song.audioSrc;
+  this.setState({ currentSong: song });
+}
+
+handleSongClick(song) {
+  const isSameSong = this.state.currentSong === song;
+
+  if (this.state.isPlaying && isSameSong) {
+    this.pause();
+  } else {
+    if (!isSameSong) { this.setSong(song); }
+    this.play();
+  }
+}
 
 displayTime(time){
     return time ? `${Math.floor(time / 60)}:${Number(time % 60 / 100).toFixed(2).substr(2,3)}` : '-:--'
@@ -57,7 +72,7 @@ displayTime(time){
             </colgroup>
             <tbody className="song-info">
             {  this.state.album.songs.map((song, index) =>
-                  <tr key={index}>
+                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
                      <td>{ index + 1 }</td>
                      <td className="song-name">{ song.title }</td>
                      <td>{ this.displayTime(song.duration)}</td>
