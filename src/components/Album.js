@@ -47,11 +47,20 @@ handleSongClick(song) {
   }
 }
 
-displayTime(time){
-    return time ? `${Math.floor(time / 60)}:${Number(time % 60 / 100).toFixed(2).substr(2,3)}` : '-:--'
+handleHover(){
+   console.log('i enter')
 
 }
 
+handleLeave () {
+  console.log('i leave')
+}
+
+displayTime(time){
+    return time ? `${Math.floor(time / 60)}
+                :${Number(time % 60 / 100).toFixed(2).substr(2,3)}`
+                : '-:--'
+}
 
    render() {
      return (
@@ -63,7 +72,6 @@ displayTime(time){
               <h2 className="artist">{this.state.album.artist}</h2>
               <div id="release-info">{this.state.album.releaseInfo}</div>
             </div>
-
           <table className="song-list">
             <colgroup id="song-list">
               <col id="song-number-column" />
@@ -72,10 +80,14 @@ displayTime(time){
             </colgroup>
             <tbody className="song-info">
             {  this.state.album.songs.map((song, index) =>
-                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
-                     <td>{ index + 1 }</td>
-                     <td className="song-name">{ song.title }</td>
-                     <td>{ this.displayTime(song.duration)}</td>
+                  <tr className="song" key={index}
+                      onClick={() => this.handleSongClick(song)}
+                      onMouseEnter={() => this.handleHover()}
+                      onMouseLeave={() => this.handleLeave() }>
+                     <td className="song-number">{ index + 1 }</td>
+                     <td className="song-name">{ song.title } </td>
+                     <td>{ this.displayTime(song.duration)} </td>
+
                   </tr>
                   )
             }
