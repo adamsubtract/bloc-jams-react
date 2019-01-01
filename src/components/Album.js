@@ -57,13 +57,13 @@ handleLeave(song, index) {
 
 handleRowDisplay(song, index) {
   return (
-        // if song playing is being hovered got to first ? else go to :
+        // if song playing is song in row go to ? else go to :
         (this.state.currentSong === song)
-            // song playing is being hovered go to ? else go to :
+            // song being hovered is playing, got to ? else go to :
             ? (this.state.isPlaying
-                // song playing is hovered, show puase button
+                // show puase button
                 ? <ion-icon name="pause"></ion-icon>
-                // song not being played, show play button
+                // song being hovered not playing, show play button
                 : <ion-icon name="arrow-dropright-circle"></ion-icon>)
             // song not playing being hovered got to ? else go to :
             : (this.state.isHovered === index + 1
