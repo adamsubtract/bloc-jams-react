@@ -12,7 +12,7 @@ class Album extends Component {
 
   this.state = {
     album: album,
-    currentSong: album.songs[0],
+    currentSong: false,
     isPlaying: false,
     isHovered: false
   };
@@ -57,13 +57,19 @@ handleLeave(song, index) {
 
 handleRowDisplay(song, index) {
   return (
-
+        // if song playing is being hovered got to first ? else go to :
         (this.state.currentSong === song)
+            // song playing is being hovered go to ? else go to :
             ? (this.state.isPlaying
+                // song playing is hovered, show puase button
                 ? <ion-icon name="pause"></ion-icon>
+                // song not being played, show play button
                 : <ion-icon name="arrow-dropright-circle"></ion-icon>)
+            // song not playing being hovered got to ? else go to :
             : (this.state.isHovered === index + 1
+                // song not playing being hovered show play button
                 ? <ion-icon name="arrow-dropright-circle"></ion-icon>
+                // song not playing not being hovered show number
                 : index + 1)
      );
 }
