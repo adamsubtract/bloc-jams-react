@@ -13,8 +13,8 @@ class Album extends Component {
   this.state = {
     album: album,
     currentSong: album.songs[0],
-    isPlaying: false
-
+    isPlaying: false,
+    isHovered: false
   };
 
   this.audioElement = document.createElement('audio');
@@ -47,13 +47,25 @@ handleSongClick(song) {
   }
 }
 
-handleHover(){
-   console.log('i enter')
-
+handleHover(song, index) {
+   this.setState({ isHovered: index + 1});
 }
 
-handleLeave () {
-  console.log('i leave')
+handleLeave(song, index) {
+   this.setState({ isHovered: false});
+}
+
+handleRowDisplay(song, index) {
+  return (
+
+        (this.state.currentSong === song)
+            ? (this.state.isPlaying
+                ? <ion-icon name="pause"></ion-icon>
+                : <ion-icon name="arrow-dropright-circle"></ion-icon>)
+            : (this.state.isHovered === index + 1
+                ? <ion-icon name="arrow-dropright-circle"></ion-icon>
+                : index + 1)
+     );
 }
 
 displayTime(time){
@@ -81,12 +93,13 @@ displayTime(time){
             <tbody className="song-info">
             {  this.state.album.songs.map((song, index) =>
                   <tr className="song" key={index}
-                      onClick={() => this.handleSongClick(song)}
-                      onMouseEnter={() => this.handleHover()}
-                      onMouseLeave={() => this.handleLeave() }>
-                     <td className="song-number">{ index + 1 }</td>
+                  onClick={() => this.handleSongClick(song)}
+                  onMouseEnter={() => this.handleHover(song, index)}
+                  onMouseLeave={() => this.handleLeave(song,index)}
+                   >
+                     <td className="song-number">{ this.handleRowDisplay(song, index) }</td>
                      <td className="song-name">{ song.title } </td>
-                     <td>{ this.displayTime(song.duration)} </td>
+                     <td className="song-duration">{ this.displayTime(song.duration)} </td>
 
                   </tr>
                   )
