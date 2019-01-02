@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 import './../App.css';
+import PlayerBar from './PlayerBar';
 
 class Album extends Component {
   constructor(props){
@@ -14,7 +15,7 @@ class Album extends Component {
     album: album,
     currentSong: false,
     isPlaying: false,
-    isHovered: false
+    isHovered: false,
   };
 
   this.audioElement = document.createElement('audio');
@@ -47,6 +48,22 @@ handleSongClick(song) {
   }
 }
 
+handlePrevClick(){
+  const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+  const newIndex = Math.max(0, currentIndex - 1);
+  const newSong = this.state.album.songs[newIndex];
+  this.setSong(newSong);
+  this.play();
+}
+
+handleNextClick(){
+  const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+  const newIndex = Math.min(4, currentIndex + 1);
+  const newSong = this.state.album.songs[newIndex];
+  this.setSong(newSong);
+  this.play();
+}
+
 handleHover(song, index) {
    this.setState({ isHovered: index + 1});
 }
@@ -61,22 +78,21 @@ handleRowDisplay(song, index) {
         (this.state.currentSong === song)
             // song being hovered is playing, got to ? else go to :
             ? (this.state.isPlaying
-                // show puase button
-                ? <ion-icon name="pause"></ion-icon>
+                // show pause button
+                ? <span className="ion-pause"></span>
                 // song being hovered not playing, show play button
-                : <ion-icon name="arrow-dropright-circle"></ion-icon>)
+                : <span className="ion-play"></span>)
             // song not playing being hovered got to ? else go to :
             : (this.state.isHovered === index + 1
                 // song not playing being hovered show play button
-                ? <ion-icon name="arrow-dropright-circle"></ion-icon>
+                ? <span className="ion-play"></span>
                 // song not playing not being hovered show number
                 : index + 1)
      );
 }
 
 displayTime(time){
-    return time ? `${Math.floor(time / 60)}
-                :${Number(time % 60 / 100).toFixed(2).substr(2,3)}`
+    return time ? `${Math.floor(time / 60)}:${Number(time % 60 / 100).toFixed(2).substr(2,3)}`
                 : '-:--'
 }
 
@@ -112,6 +128,13 @@ displayTime(time){
             }
             </tbody>
           </table>
+         <PlayerBar
+            isPlaying={this.state.isPlaying}
+            currentSong={this.state.currentSong}
+            handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+            handlePrevClick={() => this.handlePrevClick()}
+            handleNextClick={() => this.handleNextClick()}
+          />
          </section>
        </section>
      );
