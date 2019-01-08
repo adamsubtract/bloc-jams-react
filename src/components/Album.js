@@ -137,6 +137,11 @@ formatTime(time){
                 : '-:--'
 }
 
+formatDurationTime(time){
+  return time ? `${Math.floor(time / 60)}:${Number(time % 60 / 100).toFixed(2).substr(2,3)}`
+              : '-:--'
+}
+
    render() {
      return (
        <section className="album">
@@ -169,7 +174,7 @@ formatTime(time){
             </tbody>
           </table>
          <PlayerBar
-            duration={this.audioElement.duration}
+            duration={this.state.currentSong.duration}
             isPlaying={this.state.isPlaying}
             currentSong={this.state.currentSong}
             currentTime={this.audioElement.currentTime}
@@ -180,7 +185,8 @@ formatTime(time){
             handleNextClick={() => this.handleNextClick()}
             //playback listeners
             handleTimeChange={(e) => this.handleTimeChange(e)}
-            formatTime={() => this.formatTime()}
+            formatTime={() => this.formatTime(this.state.currentTime)}
+            formatDurationTime={() => this.formatDurationTime(this.state.currentSong.duration)}
             //volume listeners
             handleVolumeChange={(e) => this.handleVolumeChange(e)}
 
