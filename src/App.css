@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Coda+Caption:800|Fredoka+One');
+
 .App {
   text-align: center;
 }
@@ -38,8 +40,19 @@
   margin: auto;
   margin-top: 10px;
   text-align: center;
+  font-family: 'Fredoka One', cursive;
 }
 
 .song-name{
   text-align: left;
+}
+
+.landing{
+  font-family: 'Fredoka One', cursive;
+}
+
+.title{
+  font-family: 'Fredoka One', cursive;
+  color: red;
+  font-size: 200 px;
 }
