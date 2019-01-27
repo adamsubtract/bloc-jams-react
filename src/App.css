@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
 
 .App {
   text-align: center;
@@ -46,21 +47,11 @@
   text-align: left;
 }
 
-.landing{
-  background-image: url('https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-
-}
 
 .title{
   font-size: 200 px;
 }
 
-.first-page{
-}
-
-.hero-title{
-
-}
 .landing-nav-ul
 {
   list-style-type: none;
@@ -112,6 +103,21 @@ li a:hover {
   clear: both;
 }
 
-.row{
+.library {
+  background-color: #333;
+  font-family: 'Rock Salt', cursive;
+  color: white;
+}
 
+.landing {
+  background-color: #333;
+  font-size: 20px;
+  color: white;
+  font-family: 'Rock Salt', cursive;
+}
+
+.album {
+  background-color: #333;
+  font-family: 'Rock Salt', cursive;
+  color: white;
 }
