@@ -117,7 +117,37 @@ li a:hover {
 }
 
 .album {
-  background-color: #333;
+  background-image: url(https://images.pexels.com/photos/1365549/pexels-photo-1365549.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
   font-family: 'Rock Salt', cursive;
   color: white;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  background-color: #333;
+
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  background-color: #333;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.album-img{
+  height: 200px;
+  width: auto;
+}
+
+.album-cover-art {
+  height: 400px;
+  width: auto;
 }

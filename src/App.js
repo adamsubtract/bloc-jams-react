@@ -12,8 +12,8 @@ class App extends Component {
         <header>
           <nav>
             <ul>
-            <li><Link to='/'><img src="./../assets/images/bloc_jams_logo.png" alt="Bloc Jams Landing" /></Link></li>
-            <li><Link to='/library'> Library</Link></li>
+              <li><Link to='/'><img src="./../assets/images/bloc_jams_logo.png" alt="Bloc Jams Landing" /></Link></li>
+              <li><Link to='/library'> Library</Link></li>
             </ul>
           </nav>
         </header>

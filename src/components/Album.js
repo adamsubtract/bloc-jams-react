@@ -146,7 +146,7 @@ formatDurationTime(time){
      return (
        <section className="album">
          <section id="album-info">
-            <img id="album-cover-art" src={this.state.album.albumCover} />
+            <img className="album-cover-art" src={this.state.album.albumCover} />
             <div className="album-details">
               <h1 id="album-cover-art">{this.state.album.title}</h1>
               <h2 className="artist">{this.state.album.artist}</h2>
